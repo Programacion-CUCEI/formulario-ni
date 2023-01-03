@@ -14,6 +14,10 @@ Sistema automatizado de recopilación de datos de estudiantes de nuevo ingreso d
 
 Este proyecto está publicado bajo la **licencia MIT**. Para obtener una copia de la licencia visita este [enlace][license-url].
 
+> **Warning**
+>
+> Trabajo en progreso...
+
 ## Roadmap
 
 ### General
@@ -39,7 +43,7 @@ Este proyecto está publicado bajo la **licencia MIT**. Para obtener una copia d
     - [x] Firma
 - [ ] Crear icono para la página
 - [ ] Crear modal para firma (usando [Signature Pad][signature-pad-url])
-    - [ ] Centrado
+    - [x] Centrado
     - [ ] Botones para limpiar y guardar el canvas
     - [ ] Descartar los cambios al cerrar el modal
     - [ ] Definir cómo se enviarán los datos de la firma (png, jpg, svg, etc)
