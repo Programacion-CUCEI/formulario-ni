@@ -7,6 +7,8 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 
+<br><img src="./res/icono-proyecto.png" height=150><br>
+
 # Formulario Nuevo Ingreso
 Sistema automatizado de recopilación de datos de estudiantes de nuevo ingreso del Centro Universitario de Ciencias Exactas e Ingenierías
 
