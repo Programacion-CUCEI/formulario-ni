@@ -1,5 +1,23 @@
-// Agregamos validación a los campos del formulario
-(function() {
+let datosFirma = [];
+
+// Generamos el canvas de la firma
+const canvas = document.querySelector("canvas");
+const firma = new SignaturePad(canvas);
+
+function limpiarCanvas(){
+  return firma.clear();
+}
+
+function guardarFirma(){
+  return datosFirma = firma.toData();
+}
+
+function abrirFirma(){
+  return firma.fromData(datosFirma);
+}
+
+// Agregamos validación a los campos del formulario al cargar la página
+(() => {
   'use strict';
   window.addEventListener('load', function() {
   
