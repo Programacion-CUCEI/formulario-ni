@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Formulario Nuevo Ingreso - Club de Programación CUCEI</title>
+    <!-- Tab color Safari -->
+    <meta name="theme-color" content="#85c1e9">
 
     <!-- Icono -->
     <link rel="apple-touch-icon" sizes="180x180" href="./res/favicon/apple-touch-icon.png">
@@ -20,6 +22,9 @@
     <script src="https://kit.fontawesome.com/3c1edb4f15.js" crossorigin="anonymous"></script>
     <!-- Signature Pad -->
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+
+    <!-- Circle loader -->
+    <link href="circle-loader.css" rel="stylesheet">
 
   </head>
   <body>
@@ -38,7 +43,7 @@
               <form class="form-example needs-validation" action="" method="post" novalidate>
                     <div class="form-group">
                       <label for="nombre"><strong>Nombre(s):</strong></label>
-                      <input type="text" class="form-control" id="nombre" placeholder="Nombre(s)..." name="nombre" required>
+                      <input type="text" class="form-control" id="nombre" placeholder="Nombre(s)..." pattern="[a-zA-ZÁÉÍÓÚÑáéíóúñ ]+" name="nombre" required>
                       <div class="invalid-feedback">
                         Por favor, ingresa tu nombre.
                       </div>
@@ -46,7 +51,7 @@
 
                     <div class="form-group">
                       <label for="apellidop"><strong>Apellido paterno:</strong></label>
-                      <input type="text" class="form-control" id="apellidop" placeholder="Apellido paterno..." name="apellidop" required>
+                      <input type="text" class="form-control" id="apellidop" placeholder="Apellido paterno..." pattern="[a-zA-ZÁÉÍÓÚÑáéíóúñ ]+" name="apellidop" required>
                       <div class="invalid-feedback">
                         Por favor, ingresa tu apellido paterno.
                       </div>
@@ -54,7 +59,7 @@
 
                     <div class="form-group">
                       <label for="apellidom"><strong>Apellido materno:</strong></label>
-                      <input type="text" class="form-control" id="apellidom" placeholder="Apellido materno..." name="apellidom" required>
+                      <input type="text" class="form-control" id="apellidom" placeholder="Apellido materno..." pattern="[a-zA-ZÁÉÍÓÚÑáéíóúñ ]+" name="apellidom" required>
                       <div class="invalid-feedback">
                         Por favor, ingresa tu apellido materno.
                       </div>
@@ -72,7 +77,7 @@
 
                     <div class="form-group">
                       <label for="direccion"><strong>Dirección:</strong></label>
-                      <input type="text" class="form-control" id="direccion" placeholder="Dirección..." name="direccion" required>
+                      <input type="text" class="form-control" id="direccion" placeholder="Dirección..." pattern="[a-zA-Z0-9ÁÉÍÓÚÑáéíóúñ .,]+" name="direccion" required>
                       <div class="invalid-feedback">
                         Por favor, ingresa tu dirección.
                       </div>
@@ -88,7 +93,7 @@
 
                     <div class="form-group">
                       <label for="corigen"><strong>Ciudad de origen:</strong></label>
-                      <input type="text" class="form-control" id="corigen" placeholder="Ciudad de origen..." name="corigen" required>
+                      <input type="text" class="form-control" id="corigen" placeholder="Ciudad de origen..." pattern="[a-zA-ZÁÉÍÓÚÑáéíóúñ ]+" name="corigen" required>
                       <div class="invalid-feedback">
                         Por favor, ingresa tu ciudad de origen.
                       </div>
@@ -98,7 +103,7 @@
 
                     <div class="form-group">
                       <label for="nompadre"><strong>Nombre del padre o tutor:</strong></label>
-                      <input type="text" class="form-control" id="nompadre" placeholder="Nombre del padre o tutor..." name="nompadre" required>
+                      <input type="text" class="form-control" id="nompadre" placeholder="Nombre del padre o tutor..." pattern="[a-zA-ZÁÉÍÓÚÑáéíóúñ ]+" name="nompadre" required>
                       <div class="invalid-feedback">
                         Por favor, ingresa el nombre de tu padre o tutor.
                       </div>
@@ -132,7 +137,7 @@
 
                     <div class="form-group">
                       <label for="cumpleanos"><strong>Cumpleaños:</strong></label>
-                      <input type="date" class="form-control" id="cumpleanos" name="cumpleanos" min="1950-01-01" max="2023-01-14" required>
+                      <input type="date" class="form-control" id="cumpleanos" name="cumpleanos" min="1950-01-01" max="2023-08-10" required>
                       <div class="invalid-feedback">
                         Por favor, ingresa tu fecha de cumpleaños.
                       </div>
@@ -154,7 +159,7 @@
 
                     <div class="form-group">
                       <label for="expectativas"><strong>Expectativas de la carrera:</strong></label>
-                      <input type="tel" class="form-control" id="expectativas" placeholder="Expectativas de la carrera..." name="expectativas" required>
+                      <input type="tel" class="form-control" id="expectativas" placeholder="Expectativas de la carrera..." pattern="[a-zA-Z0-9ÁÉÍÓÚÑáéíóúñ .,]+" name="expectativas" required>
                       <div class="invalid-feedback">
                         Por favor, compártenos las espectativas que tienes de la carrera.
                       </div>
@@ -162,47 +167,55 @@
 
                     <div class="form-group">
                       <label for="firma"><strong>Firma:</strong></label><br>
-                      <button type="button" class="btn btn-outline-info" onclick="abrirFirma()" data-bs-toggle="modal" data-bs-target="#modalFirma">
-                        Firmar
-                      </button>
-                      
-                      <!-- WIP -->
-                      <div class="modal fade" id="modalFirma" tabindex="-1" aria-labelledby="modalFirmaTitulo" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="modalFirmaTitulo">Firma</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <canvas></canvas>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" onclick="limpiarCanvas()">Limpiar</button>
-                              <button type="button" class="btn btn-primary" onclick="guardarFirma()">Guardar</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-
-                      <!-- Lo comento hasta que el canvas de la firma sea funcional
-                      <div class="invalid-feedback">
+                      <div class="text-center mt-2">
+                        <canvas id="canvasFirma" width="320" height="150" style="border: 1px solid #dfe2e6; border-radius: .375rem; touch-action: none;"></canvas><br>
+                        <div class="invalid-feedback text-center" id="isFirmaValida">
                         Por favor, ingresa tu firma.
                       </div>
-                      -->
-                    </div><br>
+                        <button type="button" class="btn btn-secondary mt-2" onclick="limpiarCanvas()">Limpiar</button>
+                      </div>
+
+                      
+                      
+                    </div>
 
                     <div class="text-center">
                       <button type="button" onclick="enviar()" class="btn btn-primary btn-customized mt-4">Enviar</button>
                     </div>
                 </form>
+              
+              
+              <!-- Modal -->
+              <div class="modal fade" id="modalEnvioDatos" tabindex="-1" aria-labelledby="modalEnvioDatos" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    
+                    <div class="modal-body text-center">
+                      <div class="circle-loader my-2" id="circle-loader">
+                        <div class="status draw"></div>
+                      </div>
+                      
+                      <h4 id="status" class="text-secondary mt-2 mb-4">
+                        Cargando...
+                      </h4>
+
+                      <div class="my-2">
+                        <button id="toggle" type="button" class="btn btn-success" onclick="toogleCircle('success')">Toggle Completed</button>
+                        <button id="toggleFailed" type="button" class="btn btn-danger" onclick="toogleCircle('failed')">Toggle Failed</button>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+
+
           </div>
       </div>
     </div>
     
     <footer class="align-items-center border-top py-3 mt-4">
-      <p class="text-center text-muted"><i class="fa-solid fa-code"></i> con <i class="fa-solid fa-heart"></i> por el <a href="https://www.programacion-cucei.club" class="text-decoration-none text-primary">Club de Programación CUCEI <img class="rounded mb-1" src="./res/logo-club.jpg" width="16"></a></p>
+      <p class="text-center text-muted"><i class="fa-solid fa-code"></i> con <i class="fa-solid fa-heart"></i> por el <a href="https://www.programacion-cucei.club" class="text-decoration-none text-primary">Club de Programación CUCEI <img class="rounded mb-2" src="./res/logo-club.jpg" width="16"></a></p>
     </footer>
 
     <!-- Boostrap -->
