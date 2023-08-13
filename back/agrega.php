@@ -19,18 +19,47 @@ $cumpleanos = $request['cumpleanos'];
 $tsangre = $request['tsangre'];
 $espectativas = $request['espectativas'];
 
-// Firma
-// Falta definir si será jpg, png o svg
-
 // Validamos campos
-/*
-if (empty($nombre) || empty($apellidop) || empty($apellidom) || empty($codigo) || empty($direccion) || empty($cpostal) || empty($corigen) || empty($nompadre) || empty($telpadre) || empty($correo) || empty($whatsapp) || empty($cumpleanos) || empty($tsangre) || empty($espectativas)) {
-    $response = array(
-        'status' => 'error',
-        'message' => 'Faltan campos por llenar'
-    );
-    echo json_encode($response);
-    exit;
+$isValid = true;
+
+/* Patrones */
+$patNombre = '/[a-zA-ZÁÉÍÓÚÑáéíóúñ ]+/';
+$patNumero = '/[0-9]{'; // patNum."x}/"
+$patCelular = '/[1-9][0-9]{9}/';
+$patEmail = '/[^@\s]+@[^@\s]+\.[^@\s]+/';
+$patFecha = '/^\d{4}-\d{2}-\d{2}$/';
+$patParrafo = '/[a-zA-Z0-9ÁÉÍÓÚÑáéíóúñ .,]+/';
+$patSangre = '/^(A\+|A-|B\+|B-|AB\+|AB-|O\+|O-)$/';
+
+function valida($string, $patron){
+  if(empty($string) || !preg_match($patron, $string)){
+    $GLOBALS['isValid'] = false;
+  }
 }
-*/
+
+valida($nombre, $patNombre);
+valida($apellidop, $patNombre);
+valida($apellidom, $patNombre);
+valida($codigo, $patNumero.'9}/');
+valida($direccion, $patParrafo);
+valida($cpostal, $patNumero.'5}/');
+valida($corigen, $patParrafo);
+valida($nompadre, $patNombre);
+valida($telpadre, $patCelular);
+valida($correo, $patEmail);
+valida($whatsapp, $patCelular);
+valida($cumpleanos, $patFecha);
+valida($tsangre, $patSangre);
+valida($espectativas, $patParrafo);
+
+if(!$isValid){
+  $response = array(
+    'status' => 'error',
+    'message' => 'La información enviada no es válida.'
+  )
+  echo json_encode($response);
+  exit;
+}
+
+$update = false; // Por si mandan el formulario por segunda vez
 

@@ -40,7 +40,7 @@
               <p class="description text-justify">Muchas felicidades por haber ingresado a la carrera de <strong>ingeniería en computación</strong>. Estamos muy felices de tenerte aquí.</p>
               <p class="description text-justify">Antes de que entres al auditorio necesitaremos un par de datos tuyos para llevar el control en coordinación.</p>
 
-              <form class="form-example needs-validation" action="" method="post" novalidate>
+              <form class="form-example needs-validation" action="" method="post" id="formulario" novalidate>
                     <div class="form-group">
                       <label for="nombre"><strong>Nombre(s):</strong></label>
                       <input type="text" class="form-control" id="nombre" placeholder="Nombre(s)..." pattern="[a-zA-ZÁÉÍÓÚÑáéíóúñ ]+" name="nombre" required>
@@ -163,20 +163,6 @@
                       <div class="invalid-feedback">
                         Por favor, compártenos las espectativas que tienes de la carrera.
                       </div>
-                    </div><br>
-
-                    <div class="form-group">
-                      <label for="firma"><strong>Firma:</strong></label><br>
-                      <div class="text-center mt-2">
-                        <canvas id="canvasFirma" width="320" height="150" style="border: 1px solid #dfe2e6; border-radius: .375rem; touch-action: none;"></canvas><br>
-                        <div class="invalid-feedback text-center" id="isFirmaValida">
-                        Por favor, ingresa tu firma.
-                      </div>
-                        <button type="button" class="btn btn-secondary mt-2" onclick="limpiarCanvas()">Limpiar</button>
-                      </div>
-
-                      
-                      
                     </div>
 
                     <div class="text-center">
@@ -186,22 +172,22 @@
               
               
               <!-- Modal -->
-              <div class="modal fade" id="modalEnvioDatos" tabindex="-1" aria-labelledby="modalEnvioDatos" aria-hidden="true">
+              <div class="modal modal-sm fade" id="modalEnvioDatos" tabindex="-1" aria-labelledby="modalEnvioDatos" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
                     
                     <div class="modal-body text-center">
-                      <div class="circle-loader my-2" id="circle-loader">
+                      <div class="circle-loader mt-3 mb-4" id="circle-loader">
                         <div class="status draw"></div>
                       </div>
+                      <br>
                       
-                      <h4 id="status" class="text-secondary mt-2 mb-4">
-                        Cargando...
-                      </h4>
+                      <h5 id="status" class="text-secondary" style="font-weight: normal!important;">
+                        Guardando
+                      </h5>
 
-                      <div class="my-2">
-                        <button id="toggle" type="button" class="btn btn-success" onclick="toogleCircle('success')">Toggle Completed</button>
-                        <button id="toggleFailed" type="button" class="btn btn-danger" onclick="toogleCircle('failed')">Toggle Failed</button>
+                      <div class="mt-4 mb-3">
+                        <button id="closeModal" type="button" class="btn btn-secondary d-none" onclick="cerrarModal()">Cerrar</button>
                       </div>
                     </div>
                     

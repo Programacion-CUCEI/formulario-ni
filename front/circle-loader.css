@@ -1,5 +1,5 @@
  .circle-loader {
-	 margin: 0 0 30px 10px;
+	 margin: 0 0 10px 10px;
 	 border: 2px solid rgba(0, 0, 0, 0.2);
 	 border-left-color: #5cb85c;
 	 animation-name: loader-spin;

@@ -18,52 +18,31 @@ Este proyecto está publicado bajo la **licencia MIT**. Para obtener una copia d
 
 > **Warning**
 >
-> Trabajo en progreso...
+> Trabajo en progreso. El proyecto no funciona en su estado actual. Usar bajo su propia consideración.
 
-## Roadmap
+## Pendiente
 
 ### General
-- [ ] Mejorar readme para lanzamiento público
-    - [ ] Agregar desarrolladores y colaboradores
+- Multicarrera.
+    - Idealmente esto debería ser elegido con una query en la URL, o mostrar un menú si ninguna es agregada.
+    - Los datos de las carreras disponibles deberían ser obtenidas mediante un JSON desde el backend y el front debería poder sugerir la carrera a la cual mandar los datos si ninguna es agregada basado en la hora del dispositivo y la hora en la que los diversos cursos de inducción son.
+- Asignar límites de tamaño para todos los campos.
 
-### Frontend
-- [x] Definir diseño
-- [x] Crear campos para todos los datos del formulario
-    - [x] Nombre(s)
-    - [x] Apellido Paterno
-    - [x] Apellido Materno
-    - [x] Código de estudiante
-    - [x] Dirección
-    - [x] Código postal
-    - [x] Ciudad de origen
-    - [x] Nombre de padre o tutor
-    - [x] Teléfono de padre o tutor
-    - [x] Correo electrónico
-    - [x] WhatsApp
-    - [x] Cumpleaños
-    - [x] Tipo de sangre
-    - [x] Firma
-- [ ] Crear icono para la página
-- [ ] Crear modal para firma (usando [Signature Pad][signature-pad-url])
-    - [x] Centrado
-    - [ ] Botones para limpiar y guardar el canvas
-    - [ ] Descartar los cambios al cerrar el modal
-    - [ ] Definir cómo se enviarán los datos de la firma (png, jpg, svg, etc)
-- [ ] Checar que todos los campos estén llenos antes de enviar el formulario, y los que no marcarlos con rojo
-- [ ] Crear script de envio y modal de confirmación
-    - [ ] Centrado
-    - [ ] Enviar formulario mediante XMLHttpRequest o fetch()
-    - [ ] Añadir un timeout si el servidor no responde (ya sabemos cómo es el internet de CUCEI)
-        - 10 segundos?
-    - [ ] Checkmark y cross animados
-    - [ ] Limpiar formulario después de un envío exitoso
+### Front (Usuario)
+- Limpiar script.
+- Asignar límite en la fecha de cumpleaños hasta el día actual.
+    - Considerar moverlo 16 años atrás.
+- Agregar banner de open graph.
+
+### Front (Administrador)
+- Todo.
 
 ### Backend
-- [ ] Definir diseño
-- [ ] Expandir roadmap a objetivos más concisos
-- [ ] Desarrollar backend en PHP
-    - [ ] Responder al request con 'OK' si la solicitud fue recibida y procesada
-- [ ] Crear base de datos de MySQL
+- Diseñar sistema de base de datos.
+- Permitir actualizaciones de datos.
+
+## Contribuidores
+- **[Daniel Hdez M (Lord Friky)][lordfriky]**: Desarrollador principal.
 
 <br><p align="center">
 Este proyecto ha sido </> con <3 por el Club de Programación CUCEI 💻
@@ -87,4 +66,6 @@ Este proyecto ha sido </> con <3 por el Club de Programación CUCEI 💻
 
 <!-- Otros enlaces -->
 [license-url]: https://github.com/Programacion-CUCEI/formulario-ni/blob/main/LICENSE
-[signature-pad-url]: https://github.com/szimek/signature_pad
+
+<!-- Contribuidores -->
+[lordfriky]: https://github.com/lordfriky

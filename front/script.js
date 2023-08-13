@@ -1,20 +1,4 @@
-// Generamos el canvas de la firma
-const canvas = document.getElementById("canvasFirma");
-const firma = new SignaturePad(canvas, {
-  dotSize: 1.0,
-  minWidth: 0.5,
-  maxWidth: 1.0
-});
-
-let limpiarCanvas = () => {
-  canvas.style.borderColor = "#dfe2e6";
-  firma.clear();
-};
-
-let toogleCircle = (status) => {
-  const circle = document.getElementById("circle-loader");
-  circle.classList.add(status);
-};
+const url = ''; // URL a la que vamos a hacer la petición
 
 // Agregamos validación a los campos del formulario al cargar la página
 (() => {
@@ -45,12 +29,44 @@ let toogleCircle = (status) => {
 
     });
   }, false);
-
-  canvas.addEventListener('click', (event) => {
-    canvas.style.borderColor = "#dfe2e6";
-    document.getElementById("isFirmaValida").classList.remove("d-block");
-  }, false);
 })()
+
+async function fetchWithTimeout(resource, options = {}) {
+  const { timeout = 8000 } = options;
+  
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeout);
+
+  const response = await fetch(resource, {
+    ...options,
+    signal: controller.signal  
+  });
+  clearTimeout(id);
+
+  return response;
+}
+
+let mostrarStatus = (respuesta) => {
+  const circle = document.getElementById("circle-loader");
+
+  if(respuesta['status'] == 'error'){
+    circle.classList.add('failed');
+  } else {
+    circle.classList.add('success');
+
+    const formulario = document.getElementById('formulario');
+    formulario.reset();
+
+    let campos = document.getElementsByClassName('form-control');
+    var validar = Array.prototype.filter.call(campos, campo => campo.classList.remove('is-valid'));
+  }
+
+  const mensaje = document.getElementById('status');
+  mensaje.innerText = respuesta['message'];
+  
+  const botonCierre = document.getElementById('closeModal');
+  closeModal.classList.remove('d-none');
+};
 
 // Función que se ejecutará el presionar el botón de enviar
 let enviar = () => {
@@ -67,18 +83,41 @@ let enviar = () => {
       campo.classList.add('is-valid');
   }, false);
 
-  if(firma.isEmpty()){
-    canvas.style.borderColor = "#d9534f";
-    document.getElementById("isFirmaValida").classList.add("d-block");
-    enviar = false;
-  } else {
-    canvas.style.borderColor = "#5cb85c";
-  }
-
-  if(!enviar) return;
+  
+  //if(!enviar) return;
 
   // Todo: enviar los datos mediante XMLHttpRequest o fetch()
-  console.log("WIP");
+  const formulario = document.getElementById("formulario");
+  const datos = new URLSearchParams();
+  for(const par of new FormData(formulario)){
+    datos.append(par[0], par[1]);
+  }
+
+  fetchWithTimeout(url, {
+    method: 'post',
+    body: 'datos',
+    timeout: 30000
+  }).then(response => response.json())
+  .then(respuesta => mostrarStatus(respuesta))
+  .catch(error => mostrarStatus({
+    'status': 'error',
+    'message': 'Ha habido un error al comunicarse con el servidor. Inténtalo de nuevo.'
+  }));
+
+  
   const ventana = document.getElementById("modalEnvioDatos");
-  new bootstrap.Modal(ventana).show();
+  new bootstrap.Modal(ventana, {backdrop: 'static', keyboard: false}).show();
 }
+
+let cerrarModal = () => {
+  const ventana = document.getElementById("modalEnvioDatos");
+  const modal = bootstrap.Modal.getInstance(ventana);
+  modal.hide();
+
+  const circle = document.getElementById("circle-loader");
+  circle.classList.remove('success');
+  circle.classList.remove('failed');
+
+  const botonCierre = document.getElementById('closeModal');
+  closeModal.classList.add('d-none');
+};
